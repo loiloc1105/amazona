@@ -1,12 +1,15 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link , useParams } from "react-router-dom";
 import data from "../data";
 import Rating from "../components/Rating";
 
 export default function ProductScreen(props) {
+  const { id } = useParams()
   const product = data.products.find(
-    (idProd) => idProd._id === props.match.params.id
+    (idProd) => idProd._id === id
   );
+
+  // console.log(id + '');
   if (!product) {
     return <div>Product not exist</div>;
   }
@@ -51,7 +54,7 @@ export default function ProductScreen(props) {
                     {product.countInStock > 0 ? (
                       <span className="success">In Stock</span>
                     ) : (
-                      <span className="error">Unavailable</span>
+                      <span className="danger">Out of Stock</span>
                     )}
                   </div>
                 </div>

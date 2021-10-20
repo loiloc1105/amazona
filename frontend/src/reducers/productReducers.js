@@ -6,12 +6,11 @@ import {
   PRODUCT_LIST_REQUEST,
   PRODUCT_LIST_SUCCESS,
 } from "../contants/productContants";
-const initialState = {
-  product: [],
-  loading: true,
-};
 
-export const productListReducer = (state = initialState, action) => {
+export const productListReducer = (
+  state = { product: [], loading: true },
+  action
+) => {
   switch (action.type) {
     case PRODUCT_LIST_REQUEST:
       return {
@@ -43,13 +42,13 @@ export const productDetailsReducer = (
       };
     case PRODUCT_DETAILS_SUCCESS:
       return {
-          loading: false,
-          product: action.payload,
+        loading: false,
+        product: action.payload,
       };
     case PRODUCT_DETAILS_ERROR:
       return {
-          loading: false,
-          error: action.payload,
+        loading: false,
+        error: action.payload,
       };
     default:
       return state;
